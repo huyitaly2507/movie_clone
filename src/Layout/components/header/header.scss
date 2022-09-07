@@ -1,0 +1,259 @@
+@use '../../../scss/' as *;
+
+.menu {
+    font-size: 2.8rem;
+    display: none;
+    cursor: pointer;
+
+    @include mobile {
+        display: block;
+    }
+}
+
+.logo {
+    font-size: 2.5rem;
+    @include laptop {
+        font-size: 2rem;
+    }
+    font-weight: 600;
+
+    @include flex(center, unset);
+
+    img {
+        margin-right: 10px;
+        width: 50px;
+
+        @include mobile {
+            width: 30px;
+            margin-right: 2px;
+        }
+    }
+
+    // span {
+    //     @include mobile {
+    //         display: none;
+    //     }
+    // }
+}
+
+.header {
+    height: $header-height;
+    @include laptop {
+        height: 6rem;
+    }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    transition: height 0.3s ease, background-color 0.3s ease;
+
+    &.shrink {
+        height: $header-shrink-height;
+        background-color: $body-bg;
+    }
+
+    &__wrapper {
+        @include flex(center, space-between);
+        height: 100%;
+        padding: 0 2rem;
+
+        // @include mobile {
+        //     // justify-content: space-around;
+        // }
+    }
+
+    &__nav {
+        @include flex(center, center);
+
+        & > * ~ * {
+            margin-left: 2rem;
+        }
+
+        li {
+            padding: 5px 0;
+            font-weight: 700;
+            // position: relative;
+            font-size: 1.5rem;
+
+            a {
+                position: relative;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 0;
+                    transition: width 0.5s ease;
+                    height: 2px;
+                    background-color: $main-color;
+                }
+
+                &.active {
+                    color: $main-color;
+                }
+
+                &.active::after,
+                &:hover::after {
+                    width: 100%;
+                    color: $main-color;
+                }
+            }
+        }
+
+        @include tablet {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 5.5rem;
+            width: 100%;
+            background-color: $body-bg;
+            padding: 0 2rem;
+            box-shadow: $box-shadow;
+
+            @include flex(center, space-around);
+
+            & > li {
+                width: calc(100% / 3);
+                text-align: center;
+            }
+
+            & > * ~ * {
+                margin-left: 0;
+            }
+        }
+    }
+
+    &__user-info {
+        &-noSignin {
+            & .medium {
+                border-radius: 10px;
+            }
+            & > * ~ * {
+                margin-left: 8px;
+            }
+        }
+
+        &-Signin {
+            @include flex(center, center);
+            position: relative;
+
+            & .my-favourite {
+                @include flex(center, center);
+                position: relative;
+                font-size: 2.5rem;
+                margin-right: 30px;
+                cursor: pointer;
+
+                &::after {
+                    content: 'Your favourites';
+                    position: absolute;
+                    bottom: -38px;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    width: 120px;
+                    height: 30px;
+                    padding: 0 5px;
+                    background-color: #333;
+                    border-radius: 10px;
+                    @include flex(center, center);
+                    opacity: 0;
+                    transition: opacity 0.5s ease;
+                }
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -18px;
+                    border-width: 20px 20px;
+                    border-style: solid;
+                    border-color: transparent transparent #333 transparent;
+                    @include flex(center, center);
+                    opacity: 0;
+                    transition: opacity 0.5s ease;
+                }
+
+                &:hover {
+                    color: $main-color;
+                }
+
+                &:hover::before,
+                &:hover::after {
+                    opacity: 1;
+                    color: $white;
+                }
+
+                &_quantity {
+                    @include flex(center, center);
+                    position: absolute;
+                    right: -16px;
+                    top: -2px;
+                    width: 30px;
+                    height: 20px;
+                    border-radius: 5px;
+                    background-color: $main-color;
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                }
+
+                &:hover .my-favourite_quantity {
+                    background-color: $white;
+                }
+
+                @include mobile {
+                    display: none;
+                }
+            }
+
+            & .header__user-info-img {
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                width: 50px;
+                padding-top: 50px;
+                border-radius: 50%;
+                margin-left: 5px;
+                cursor: pointer;
+
+                @include mobile {
+                    width: 40px;
+                    padding-top: 40px;
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    transform: translateY(75%);
+                    width: 50px;
+                    height: 30%;
+                    background-color: transparent;
+                }
+
+                & .log-out {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    transform: translate(25%, 120%);
+                    display: none;
+                }
+            }
+
+            & .header__user-info-img:hover .log-out {
+                display: block;
+
+                @include mobile {
+                    display: none;
+                }
+            }
+
+            & .header__user-info-name {
+                @include mobile {
+                    display: none;
+                }
+            }
+        }
+    }
+}

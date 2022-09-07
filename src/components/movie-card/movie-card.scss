@@ -1,0 +1,103 @@
+@use '../../scss/' as *;
+
+.movie-card {
+    position: relative;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 160%;
+    border-radius: $border-radius;
+    margin-bottom: 1rem;
+
+    .btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: $black;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: $border-radius;
+    }
+
+    &_liked {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 1.8rem;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+
+        &-outline {
+            opacity: 0;
+        }
+
+        &-fill {
+            color: $main-color;
+            background-color: rgba($color: #000000, $alpha: 0.5);
+            border-radius: 30%;
+        }
+    }
+
+    &_close {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        font-size: 2rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            color: $main-color;
+        }
+
+        // &-fill {
+        //     color: $main-color;
+        //     background-color: rgba($color: #000000, $alpha: 0.5);
+        //     border-radius: 30%;
+        // }
+    }
+
+    @media (hover: hover) {
+        &:hover &_liked-outline,
+        &:hover &_close {
+            opacity: 1;
+        }
+
+        &:hover::before {
+            opacity: 0.8;
+        }
+
+        &:hover .btn {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+}
+
+.movie-card_title {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.movie-card:hover + .movie-card_title {
+    color: $main-color;
+}
+
+.noti-modal_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 500;
+}

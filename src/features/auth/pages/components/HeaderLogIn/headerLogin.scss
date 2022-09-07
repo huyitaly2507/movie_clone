@@ -1,0 +1,14 @@
+@use '../../../../../scss/' as *;
+
+header {
+    font-size: 1.5rem;
+    color: rgb(119, 119, 252);
+    font-weight: 700;
+    text-align: center;
+    @include tablet {
+        font-size: 2rem;
+    }
+    @include mobile {
+        font-size: 2.2rem;
+    }
+}

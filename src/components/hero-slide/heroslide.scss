@@ -1,0 +1,164 @@
+@use '../../scss' as *;
+
+.hero-slide {
+    margin-bottom: 3rem;
+}
+
+.hero-slide__item {
+    padding: 9rem 0;
+    width: 100%;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @include mobile {
+        height: 420px;
+        padding-top: 8rem;
+        padding-bottom: 2rem;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        @include overlay();
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-image: linear-gradient(to top, $body-bg, rgba($black, 0));
+
+        @include mobile {
+            height: 50px;
+        }
+    }
+
+    &__content {
+        position: relative;
+        @include flex(center, center);
+
+        &__info {
+            width: 55%;
+            padding: 0 3rem;
+            position: relative;
+
+            @include tablet {
+                width: 100%;
+            }
+
+            & > * ~ * {
+                margin-top: 3rem;
+            }
+
+            .title {
+                font-size: 5rem;
+                @include laptop {
+                    font-size: 4rem;
+                }
+                font-weight: 700;
+                line-height: 1;
+
+                @include tablet {
+                    font-size: 4rem;
+                }
+
+                @include mobile {
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                }
+            }
+
+            .overview {
+                font-size: 1.5rem;
+                @include laptop {
+                    font-size: 1rem;
+                }
+                font-weight: 600;
+
+                @include mobile {
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 5;
+                    overflow: hidden;
+                }
+            }
+
+            .btns > * ~ * {
+                margin-left: 1rem;
+            }
+
+            .btns,
+            .title,
+            .overview {
+                opacity: 0;
+                transform: translateY(-100px);
+                transition: transform 0.5s ease, opacity 0.5s ease;
+            }
+        }
+
+        &__poster {
+            flex: 1;
+            position: relative;
+            @include flex(center, flex-start);
+
+            img {
+                width: 400px;
+                @include laptop {
+                    width: 300px;
+                }
+                border-radius: $border-radius;
+                box-shadow: $box-shadow;
+
+                transform: scale(0);
+                transition: transform 0.7s ease;
+            }
+
+            @include tablet {
+                display: none;
+            }
+
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+
+    &.isActive > &__content > &__content__poster {
+        img {
+            transform: scale(1);
+        }
+    }
+
+    &.isActive > &__content > &__content__info {
+        .btns,
+        .title,
+        .overview {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .title {
+            transition-delay: 0.3s, 0.3s;
+        }
+
+        .overview {
+            transition-delay: 0.6s, 0.6s;
+        }
+
+        .btns {
+            transition-delay: 0.9s, 0.9s;
+        }
+    }
+}

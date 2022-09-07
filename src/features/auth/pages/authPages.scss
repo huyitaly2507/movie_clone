@@ -1,0 +1,83 @@
+@use '../../../scss/' as *;
+
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    @include mobile {
+        min-height: 80vh;
+    }
+}
+
+.auth-page {
+    // max-height: 100vh;
+    // font-family: 'Sora', sans-serif;
+    // background-color: rgb(239, 240, 255);
+    background-color: white;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    padding: 1.4rem;
+    font-size: 1.2rem;
+    width: 500px;
+    border-radius: 14px;
+    // box-shadow: 0px 0px 14px 3px rgb(222, 224, 250);
+    // overflow: hidden;
+
+    &_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & :nth-child(3) {
+            opacity: 0;
+        }
+    }
+
+    .infoform {
+        // max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: white;
+        gap: 0.5rem;
+        margin-top: 1.2rem;
+        font-weight: 500;
+        border-radius: 14px;
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}
+
+button {
+    cursor: pointer;
+    align-self: flex-end;
+    padding: 0.5rem;
+    background-color: rgb(104, 187, 255);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    border-radius: 8px;
+    @include tablet {
+        font-size: 1.2rem;
+        padding: 0.8rem;
+    }
+    @include mobile {
+        font-size: 1.5rem;
+        padding: 1rem;
+    }
+}
+
+.errorMsg {
+    max-width: 100%;
+    font-size: 0.75rem;
+    color: rgb(248, 106, 106);
+    @include tablet {
+        font-size: 1rem;
+    }
+    @include mobile {
+        font-size: 1.2rem;
+    }
+}

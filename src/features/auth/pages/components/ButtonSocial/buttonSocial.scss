@@ -1,0 +1,36 @@
+@use '../../../../../scss/' as *;
+
+.btn-wrapper {
+    margin-top: 1.5rem;
+    /* margin-bottom: -1rem; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btn-social {
+    min-width: 140px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    @include mobile {
+        padding: 1rem 0;
+        font-size: 1.5rem;
+
+        & > svg {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+}
+
+.btn-social-title {
+    position: relative;
+    top: 1px;
+    margin-left: 5px;
+}
+
+.google {
+    background-color: rgb(255 104 104);
+}
